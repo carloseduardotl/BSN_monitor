@@ -33,11 +33,11 @@ while :
 do
         ps -aux | grep reli_engine >> $raw_path/reli_engine.txt
 	ps -aux | grep g3t1_1 >> $raw_path/g3t1_1.txt
-	ps -aux | grep g3t1_1 >> $raw_path/g3t1_1.txt
-	ps -aux | grep g3t1_1 >> $raw_path/g3t1_1.txt
-	ps -aux | grep g3t1_1 >> $raw_path/g3t1_1.txt
-	ps -aux | grep g3t1_1 >> $raw_path/g3t1_1.txt
-	ps -aux | grep g3t1_1 >> $raw_path/g3t1_1.txt
+	ps -aux | grep g3t1_2 >> $raw_path/g3t1_2.txt
+	ps -aux | grep g3t1_3 >> $raw_path/g3t1_3.txt
+	ps -aux | grep g3t1_4 >> $raw_path/g3t1_4.txt
+	ps -aux | grep g3t1_5 >> $raw_path/g3t1_5.txt
+	ps -aux | grep g3t1_6 >> $raw_path/g3t1_6.txt
 	ps -aux | grep g4t1 >> $raw_path/g4t1.txt
 	ps -aux | grep param_adapter >> $raw_path/param_adapter.txt
 	ps -aux | grep enactor >> $raw_path/enactor.txt
