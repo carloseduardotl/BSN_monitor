@@ -2,6 +2,7 @@ import re
 import pandas as pd
 
 raw_path = "data/raw/"
+loaded_path = "data/loaded/"
 
 engine = "reli_engine.txt"
 g3t1_1 = "g3t1_1.txt"
@@ -29,19 +30,23 @@ def read_file(file):
         return myfile.readlines()
 
 def match_regex(file_read):
-    results = [re.findall('bsn\s*\d{4}\s*(\d+\.?\d+)\s*(\d+\.?\d+).*\.(launch|log)', line) for line in a]
+    results = [re.findall('bsn\s*\d{4}\s*(\d+\.?\d+)\s*(\d+\.?\d+).*\.(launch|log)', line) for line in file_read]
     return [res[0] for res in results if len(res) > 0]
 
-a = read_file(raw_path + g3t1_1)
-results = match_regex(a)
-tb = pd.DataFrame(results, columns=['cpu','mem','nome'])
-tb = tb.assign(
-            cpu = tb.cpu.astype(float),
-            mem = tb.mem.astype(float),
-        )
-tb.sum()
+def create_table(path):
+    a = read_file(path)
+    results = match_regex(a)
+    tb = pd.DataFrame(results, columns=['cpu','mem','nome'])
+    tb = tb.assign(
+                cpu = tb.cpu.astype(float),
+                mem = tb.mem.astype(float),
+            )
+    return tb
+# tb.sum()
 
-# for module in modules:
-#     with open(raw_path+module, "r") as raw_data:
-#         content = raw_data.read()
+# tb.to_pickle(loaded_path + g3t1_1 + ".pkl")
+# ld = pd.read_pickle(loaded_path + g3t1_1 + ".pkl")
 
+dict_tb = {}
+for module in modules:
+    dict_tb[module] = create_table(raw_path+module)
